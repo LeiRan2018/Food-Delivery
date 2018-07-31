@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { DishComponent } from './dish/dish.component';
 import { CustomerComponent } from './customer/customer.component';
 import { BillComponent } from './bill/bill.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DishComponent,
     CustomerComponent,
-    BillComponent
+    BillComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
