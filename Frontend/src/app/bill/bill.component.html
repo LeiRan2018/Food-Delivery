@@ -1,0 +1,11 @@
+<ul>
+    <li *ngFor="let bill of bills">
+      <div>{{bill._id}}</div>
+      <div>{{bill.customer.first_name}}</div>
+      <ul>
+        <li *ngFor='let dish of bill.dishes'>
+          <div>{{dish.name}}</div>
+        </li>
+      </ul>
+    </li>
+  </ul>
