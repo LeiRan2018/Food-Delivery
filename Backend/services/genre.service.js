@@ -21,7 +21,7 @@ exports.getgenre = async function (id) {
 };
 
 exports.postgenre = async function (genre) {
-    var newgenre = Genre(genre);
+    var newgenre =new Genre(genre);
     try {
         var query = await newgenre.save();
         return query;

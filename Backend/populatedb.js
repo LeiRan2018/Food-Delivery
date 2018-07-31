@@ -79,24 +79,24 @@ function dishCreate(name, price, status, genre, cb) {
 }
 
 
-function dishInstanceCreate(dish, customer, cb) {
-  bookinstancedetail = { 
-    dish: dish
-  }    
-  if (customer != false) bookinstancedetail.customer = customer
+// function dishInstanceCreate(dish, customer, cb) {
+//   bookinstancedetail = { 
+//     dish: dish
+//   }    
+//   if (customer != false) bookinstancedetail.customer = customer
     
-  var dishinstance = new DishInstance(bookinstancedetail);    
-  dishinstance.save(function (err) {
-    if (err) {
-      console.log('ERROR CREATING DishInstance: ' + dishinstance);
-      cb(err, null)
-      return
-    }
-    console.log('New DishInstance: ' + dishinstance);
-    dishinstances.push(dishinstance)
-    cb(null, dish)
-  }  );
-}
+//   var dishinstance = new DishInstance(bookinstancedetail);    
+//   dishinstance.save(function (err) {
+//     if (err) {
+//       console.log('ERROR CREATING DishInstance: ' + dishinstance);
+//       cb(err, null)
+//       return
+//     }
+//     console.log('New DishInstance: ' + dishinstance);
+//     dishinstances.push(dishinstance)
+//     cb(null, dish)
+//   }  );
+// }
 
 
 function createGenreCustomers(cb) {
@@ -143,40 +143,40 @@ function createDishs(cb) {
 }
 
 
-function createDishInstances(cb) {
-    async.parallel([
-        function(callback) {
-          dishInstanceCreate(dishes[0], customers[0], callback)
-        },
-        function(callback) {
-          dishInstanceCreate(dishes[0], false, callback)
-        },
-        function(callback) {
-          dishInstanceCreate(dishes[0], false, callback)
-        },
-        function(callback) {
-          dishInstanceCreate(dishes[1], customers[1], callback)
-        },
-        function(callback) {
-          dishInstanceCreate(dishes[1], false, callback)
-        },
-        function(callback) {
-          dishInstanceCreate(dishes[1], false, callback)
-        },
-        function(callback) {
-          dishInstanceCreate(dishes[2], customers[2], callback)
-        }
-        ],
-        // Optional callback
-        cb);
-}
+// function createDishInstances(cb) {
+//     async.parallel([
+//         function(callback) {
+//           dishInstanceCreate(dishes[0], customers[0], callback)
+//         },
+//         function(callback) {
+//           dishInstanceCreate(dishes[0], false, callback)
+//         },
+//         function(callback) {
+//           dishInstanceCreate(dishes[0], false, callback)
+//         },
+//         function(callback) {
+//           dishInstanceCreate(dishes[1], customers[1], callback)
+//         },
+//         function(callback) {
+//           dishInstanceCreate(dishes[1], false, callback)
+//         },
+//         function(callback) {
+//           dishInstanceCreate(dishes[1], false, callback)
+//         },
+//         function(callback) {
+//           dishInstanceCreate(dishes[2], customers[2], callback)
+//         }
+//         ],
+//         // Optional callback
+//         cb);
+// }
 
 
 
 async.series([
     createGenreCustomers,
     createDishs,
-    createDishInstances
+    // createDishInstances
 ],
 // Optional callback
 function(err, results) {
