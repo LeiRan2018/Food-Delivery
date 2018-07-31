@@ -8,6 +8,7 @@ import { DishComponent } from './dish/dish.component';
 import { CustomerComponent } from './customer/customer.component';
 import { BillComponent } from './bill/bill.component';
 import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule } from './/app-routing.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HeaderComponent } from './header/header.component';
   imports: [
     BrowserModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
