@@ -53,7 +53,7 @@ exports.createbill = async function(req, res) {
     });
     var new_data = {
         customer: req.body.customer ? req.body.customer: null,
-        date: req.body.date ? req.body.date: Date.now(),
+        date: Date.now(),
         dishes: (dish_available.length >0) ? dish_available: false
     }
     try {
