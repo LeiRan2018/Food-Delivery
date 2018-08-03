@@ -9,11 +9,4 @@ var BillSchema = Schema(
         modified_at: {type: Date}
     }
 );
-
-BillSchema
-.virtual('url')
-.get(function () {
-    return this._id;
-});
-
 module.exports = mongoose.model('Bill', BillSchema);

@@ -3,6 +3,8 @@
     <li *ngFor="let bill of bills">
       <div>{{bill._id}}</div>
       <div>{{bill.customer.first_name}}</div>
+      <div>{{bill.created_at}}</div>
+      <div>{{bill.modified_at}}</div>
       <ul>
         <li *ngFor='let dish of bill.dishes'>
           <div>{{dish.name}}</div>

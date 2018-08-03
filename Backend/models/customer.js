@@ -10,20 +10,5 @@ var CustomerSchema = Schema(
         modified_at: {type: Date}
     }
 );
-
-// Virtual for customer's full name
-CustomerSchema
-.virtual('name')
-.get( function () {
-    return this.last_name + ', ' + this.first_name;
-});
-
-// Virtual for customer's URL
-CustomerSchema
-.virtual('url')
-.get( function () {
-    return this._id;
-});
-
 // Export model
 module.exports = mongoose.model('Customer', CustomerSchema);

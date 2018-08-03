@@ -16,5 +16,4 @@ var DishSchema = Schema(
 );
 
 //Export model
-DishSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Dish', DishSchema);

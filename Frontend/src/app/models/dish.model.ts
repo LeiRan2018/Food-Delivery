@@ -5,11 +5,13 @@ export class Dish {
     status: string;
     number: string;
     genre: string;
-    date: Date;
+    created_at: Date;
+    modified_at: Date;
     constructor() {
         this.name = '';
         this.price = '';
         this.genre = '';
-        this.date = new Date();
+        this.created_at = new Date();
+        this.modified_at = new Date();
     }
 }
