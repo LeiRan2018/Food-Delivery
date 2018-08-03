@@ -10,27 +10,23 @@
 // }
 var old_data = {'b':1}
 var new_data = {'a':2, 'b':1, 'c':1}
-for(var a in old_data) {
-    console.log(a + old_data[a])
-}
-// var new_map = new Map(Object.entries(new_data))
-// var old_map = new Map(Object.entries(old_data))
-// console.log(new_map)
-// var indicator = true;
-// console.log('new_data_size: ' + new_map.size + ' old_data_size: ' + old_map.size)
-// if (new_map.size >= old_map.size) {var big_map = new_map; var small_map = old_map;}
-// else {var big_map = old_map; var small_map = new_map; indicator = false}
-// var change_map = new Map();
-// small_map.forEach((value, key, array) => {
+var new_map = new Map(Object.entries(new_data))
+var old_map = new Map(Object.entries(old_data))
+if (new_map.size >= old_map.size) {var big_map = new_map; var small_map = old_map;}
+else {var big_map = old_map; var small_map = new_map; indicator = false}
+var change_map = new Map();
+small_map.forEach((value, key, array) => {
     
-//     big_map.forEach((value1, key1, array1) =>{
-//         if (array.has(key1)) {
-//             change_map.set(key1, ( value1 - array.get(key1)))
-//         }
-//         else if (array1.has(key) == false) {change_map.set(key, -value);}
-//         else {change_map.set(key1, value1 );}
-//     })
-// })
+    big_map.forEach((value1, key1, array1) =>{
+        if (array.has(key1)) {change_map.set(key1, ( value1 - array.get(key1)))}
+        else if (array1.has(key) == false) {change_map.set(key, -value);}
+        else {change_map.set(key1, value1 );}
+    })
+})
+console.log(change_map)
+var sample = Array.from(change_map)
+sample.forEach(data => {console.log(data[1])})
+
 // if (indicator) {
 //     console.log('the number of new menu is increased');
 // }
