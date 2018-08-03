@@ -9,17 +9,11 @@ var DishSchema = Schema(
     price: {type: String, required: true},
     status: {type: String, enum: ['Available', 'Soldout'], default: 'Available'},
     number: {type: String, default:'1'},
-    date: {type: Date},
+    created_at: {type: Date},
+    modified_at: {type: Date},
     genre: {type: Schema.Types.ObjectId, ref: 'Genre'}
   }
 );
-
-// Virtual for dish's URL
-DishSchema
-.virtual('url')
-.get(function () {
-  return this._id;
-});
 
 //Export model
 DishSchema.plugin(mongoosePaginate);

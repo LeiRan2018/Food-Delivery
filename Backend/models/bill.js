@@ -5,7 +5,8 @@ var BillSchema = Schema(
     {
         customer: {type: Schema.Types.ObjectId, ref: 'Customer', required: true},
         dishes: [{type: Schema.Types.ObjectId, ref: 'Dish', required: true}],
-        date: {type: Date}
+        created_at: {type: Date},
+        modified_at: {type: Date}
     }
 );
 

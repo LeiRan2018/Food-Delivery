@@ -37,7 +37,7 @@ exports.createdish_post = async function(req, res, next) {
     var dish = {
         name: req.body.name,
         price: req.body.price,
-        date: req.body.date ? req.body.date: Date.now(),
+        created_at: Date.now(),
         number: req.body.number,
         genre: req.body.genre
     }
@@ -64,7 +64,8 @@ exports.updatedish = async function(req, res, next) {
         price: req.body.price ? req.body.price: old_dish.price,
         status: (req.body.number > 0) ? 'Available': 'Soldout',
         number: req.body.number ? req.body.number: old_dish.number,
-        genre: req.body.genre ? req.body.genre: old_dish.genre
+        genre: req.body.genre ? req.body.genre: old_dish.genre,
+        modified_at: Date.now()
     };
 
     try {
@@ -80,7 +81,8 @@ exports.deletedish = async function(req, res) {
     var id = req.params.id;
     try {
         await dishService.deletedish(id);
-        return res.status(200).json({ status: 200, messages: 'delete dish successfully' });
+        var query = await dishService.getdishes();
+        return res.status(200).json({ status: 200, data: query, messages: 'delete dish successfully' });
     }catch(e) {
         return res.status(400).json({ status: 400, message: e.message });
     }

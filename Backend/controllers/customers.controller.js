@@ -27,7 +27,8 @@ exports.createcustomer = async function(req, res) {
     var new_customer = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        address: req.body.address
+        address: req.body.address,
+        created_at: Date.now()
     };
     try {
         var query = await customerService.createcustomer(new_customer);
@@ -49,7 +50,8 @@ exports.updatecustomer = async function(req, res) {
     var new_customer = {
         first_name: req.body.first_name ? req.body.first_name: old_customer.first_name,
         last_name: req.body.last_name ? req.body.last_name: old_customer.last_name,
-        address: req.body.address ? req.body.address: old_customer.address
+        address: req.body.address ? req.body.address: old_customer.address,
+        modified_at: Date.now()
     };
 
     try{
@@ -65,7 +67,8 @@ exports.deletecustomer = async function(req, res) {
     var id = req.params.id;
     try {
         await customerService.deletecustomer(id);
-        return res.status(200).json({status: 200, message: 'deleted customer successfully'});
+        var query = await customerService.getcustomers();
+        return res.status(200).json({status: 200, data: query, message: 'deleted customer successfully'});
     }catch(e) {
         return res.status(400).json({status: 400, message: e.message});
     }

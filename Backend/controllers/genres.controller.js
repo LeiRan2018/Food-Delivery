@@ -22,7 +22,8 @@ exports.getgenre = async function(req, res, next) {
 
 exports.creategenre = async function(req, res, next) {
     var genre = {
-        name: req.body.name
+        name: req.body.name,
+        created_at: Date.now(),
     }
     try {
         var query = await genreService.postgenre(genre);
@@ -43,7 +44,8 @@ exports.updategenre = async function(req, res, next) {
     };
 
     var new_data = {
-        name: req.body.name ? req.body.name : old_genre.name
+        name: req.body.name ? req.body.name : old_genre.name,
+        modified_at: Date.now()
     };
 
     try {
@@ -59,7 +61,8 @@ exports.deletegenre = async function(req, res) {
     var id = req.params.id;
     try {
         await genreService.deletegenre(id);
-        return res.status(200).json({ status: 200, messages: 'delete genre successfully' });
+        var query = await genreService.getgenres();
+        return res.status(200).json({ status: 200, data: query, messages: 'delete genre successfully' });
     }catch(e) {
         return res.status(400).json({ status: 400, message: e.message });
     }
