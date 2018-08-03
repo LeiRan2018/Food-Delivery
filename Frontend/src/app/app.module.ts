@@ -9,6 +9,7 @@ import { CustomerComponent } from './customer/customer.component';
 import { BillComponent } from './bill/bill.component';
 import { HeaderComponent } from './header/header.component';
 import { AppRoutingModule } from './/app-routing.module';
+import { GenreComponent } from './genre/genre.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { AppRoutingModule } from './/app-routing.module';
     DishComponent,
     CustomerComponent,
     BillComponent,
-    HeaderComponent
+    HeaderComponent,
+    GenreComponent
   ],
   imports: [
     BrowserModule,
