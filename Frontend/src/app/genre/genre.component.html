@@ -7,3 +7,16 @@
     <div>{{genre.modified_at}}</div>
   </li>
 </ul>
+
+{{diagnostic}}
+<div class="container">
+  <h1>Genre Form</h1>
+  <form (ngSubmit)="newGenre()" #genreForm="ngForm">
+    <div class="form-group">
+      <label for="name">Genre Name</label>
+      <input type="text" class="form-control" id="name" [(ngModel)]="new_genre.name" name="name" required>
+    </div>
+
+    <button class="btn btn-success" >Submit</button>
+  </form>
+</div>

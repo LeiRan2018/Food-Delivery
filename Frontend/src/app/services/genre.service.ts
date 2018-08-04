@@ -9,13 +9,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GenreService {
+
   api = `${API_URL}/genres`;
+
   constructor(private http: HttpClient) { }
+
   getGenres(): Observable<Genre[]> {
     return this.http.get(this.api).pipe(
       map(res => {
         return res['data'] as Genre[];
       })
     )
+  };
+
+  postGenre(data) {
+    return this.http.post(`${this.api}/create`, data)
   }
 }

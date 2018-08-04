@@ -10,9 +10,11 @@ import { GenreService } from '../services/genre.service';
 export class GenreComponent implements OnInit {
   
   genrelist: Genre[];
+
+  new_genre = {name: ''};
   
   constructor(private genreservice: GenreService) { }
-
+  
   ngOnInit() {
     this.getgenres();
   }
@@ -20,5 +22,9 @@ export class GenreComponent implements OnInit {
     this.genreservice.getGenres()
       .subscribe(data => this.genrelist = data);
   }
-
+  newGenre() {
+    this.genreservice.postGenre(this.new_genre)
+      .subscribe(() => this.getgenres());
+    this.new_genre.name = '';
+  }
 }
