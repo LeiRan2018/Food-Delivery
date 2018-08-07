@@ -22,7 +22,7 @@ export class GenreComponent implements OnInit {
     this.genreservice.getGenres()
       .subscribe(data => this.genrelist = data);
   }
-  newGenre() {
+  newgenre() {
     this.genreservice.postGenre(this.new_genre)
       .subscribe(() => this.getgenres());
     this.new_genre.name = '';

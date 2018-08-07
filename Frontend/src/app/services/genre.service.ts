@@ -22,7 +22,21 @@ export class GenreService {
     )
   };
 
+  getGenre(id: string): Observable<Genre> {
+    return this.http.get(`${this.api}/${id}`).pipe(
+      map(res => { return res['data'] as Genre; })
+    )
+  };
+
   postGenre(data) {
     return this.http.post(`${this.api}/create`, data)
+  };
+
+  updateGenre(id, data) {
+    return this.http.put(`${this.api}/${id}/update`, data)
+  };
+
+  deleteGenre(id) {
+    return this.http.delete(`${this.api}/${id}`)
   }
 }

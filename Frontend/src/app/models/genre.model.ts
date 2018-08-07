@@ -5,6 +5,5 @@ export class Genre {
     modified_at: Date;
     
     constructor(
-        public new_name: string
     ) { }
 }

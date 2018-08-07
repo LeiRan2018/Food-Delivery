@@ -12,6 +12,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { GenreComponent } from './genre/genre.component';
 
 import { FormsModule }   from '@angular/forms';
+import { GenreDetailComponent } from './genre-detail/genre-detail.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule }   from '@angular/forms';
     CustomerComponent,
     BillComponent,
     HeaderComponent,
-    GenreComponent
+    GenreComponent,
+    GenreDetailComponent
   ],
   imports: [
     BrowserModule,
