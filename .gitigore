@@ -1,0 +1,6 @@
+# test file
+test.js
+
+# dependencies
+/Backend/node_modules
+/Frontend/node_modules

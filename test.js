@@ -1,53 +1,55 @@
-// var abc = ['a', 'b', 'a', 'c', 'b']
-// var b = abc.reduce( (alldata, data) => {
-//     if (data in alldata) {alldata[data]++;}
-//     else {alldata[data] = 1}
-//     return alldata;
-// }, [])
-// var d = []
-// for (var a in b) {
-//     for(i=0; i<b[a]; i++) {d.push(a)}
-// }
-var old_data = {'b':1}
-var new_data = {'a':2, 'b':1, 'c':1}
-var new_map = new Map(Object.entries(new_data))
-var old_map = new Map(Object.entries(old_data))
-if (new_map.size >= old_map.size) {var big_map = new_map; var small_map = old_map;}
-else {var big_map = old_map; var small_map = new_map; indicator = false}
-var change_map = new Map();
-small_map.forEach((value, key, array) => {
-    
-    big_map.forEach((value1, key1, array1) =>{
-        if (array.has(key1)) {change_map.set(key1, ( value1 - array.get(key1)))}
-        else if (array1.has(key) == false) {change_map.set(key, -value);}
-        else {change_map.set(key1, value1 );}
-    })
-})
-console.log(change_map)
-var sample = Array.from(change_map)
-sample.forEach(data => {console.log(data[1])})
+//   concurrentStart();
+// stillSerial();
+// parallel();
+// sequentialStart();
+// Promise.resolve().then(() => console.log(2));
+// console.log(1); // 1, 2
+// var promise3 = new Promise(function(resolve, reject) {
+//     setTimeout(resolve, 2000, 'foo');
+//   });
+// promise3.then(value => console.log(value))
+// // var p3 = Promise.all([1,2,3, Promise.reject(555)]);
+// var resolvedPromisesArray = [Promise.resolve(33), Promise.resolve(44)];
 
-// if (indicator) {
-//     console.log('the number of new menu is increased');
-// }
-// else {console.log('the number of new menu is decreased');
-//     change_map.forEach((value,key) => {change_map.set(key, -value)})
-// }
-// console.log(change_map)
-// var change_obj = []
-// change_map.forEach((value, key) => {change_obj.push({'key': key, 'num':value})})
-// console.log(change_obj)
-// var new_obj = [ 
-//     { key: 'a', num: '3' },
-//     { key: 'b', num: '90' },
-//     { key: 'c', num: '3' },
-//     { key: 'd', num: '7' },
-//     { key: 'f', num: '10' },
-//     { key: 'e', num: '23' } 
-// ];
-// for(i=0; i<change_obj.length; i++){
-//     var num = Number(new_obj[i].num);
-//     num += change_obj[i].num;
-//     new_obj[i].num = num.toString();
-// }
-// console.log(new_obj)
+// var p = Promise.all(resolvedPromisesArray);
+// immediately logging the value of p
+// console.log(p);
+// p.then(() => console.log(p))
+// setTimeout(() => console.log(p))
+// var p1 = new Promise((resolve, reject) => { 
+//     setTimeout(resolve, 1000, 'one'); 
+//   }); 
+//   var p2 = new Promise((resolve, reject) => { 
+//     setTimeout(resolve, 2000, 'two'); 
+//   });
+//   var p3 = new Promise((resolve, reject) => {
+//     setTimeout(resolve, 3000, 'three');
+//   });
+//   var p4 = new Promise((resolve, reject) => {
+//     setTimeout(resolve, 4000, 'four');
+//   });
+
+// console.log(p5)
+
+//   Promise.all([p1, p2, p3, p4, p5]).then(values => { 
+//     console.log(values);
+//   }, reason => {
+//     console.log(reason)
+//   });
+// var promise1 = Promise.resolve(3)
+// var mixedPromisesArray = [Promise.resolve(33), Promise.reject(44)];
+// var p = Promise.all(mixedPromisesArray);
+// console.log(p);
+// setTimeout(function() {
+//     console.log('the stack is now empty');
+//     console.log(p);
+// });
+var p1 = Promise.reject("calling next");
+
+p1.catch().then(function (value) {
+    console.log("next promise's onFulfilled"); /* next promise's onFulfilled */
+    console.log(value); /* calling next */
+}, function (reason) {
+    console.log("next promise's onRejected");
+    console.log(reason);
+});
