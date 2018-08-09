@@ -1,21 +1,15 @@
-<h1>Customers</h1>
-<ul>
-  <li *ngFor="let customer of customers">
-    <div>{{customer._id}}</div>
-    <div>
-      <a routerLink="/customers/{{customer._id}}">
-        {{customer.first_name}}, {{customer.last_name}}
-      </a>
-    </div>
-    <div>{{customer.address}}</div>
-    <div>{{customer.created_at}}</div>
-    <div>{{customer.modified_at}}</div>
-  </li>
-</ul>
+<div>
+  {{customer.first_name}}, {{customer.last_name}}
+  <button class="delete" title="delete customer" (click)="delete(customer._id)">X</button>
+</div>
+<div>{{customer._id}}</div>
+<div>{{customer.created_at}}</div>
+<div>{{customer.modified_at}}</div>
+<button (click)="goBack()">go back</button>
 
 <div class="container">
-  <h1>customer create Form</h1>
-  <form (ngSubmit)="createCustomer()" #customerForm="ngForm">
+  <h1>customer Update Form</h1>
+  <form (ngSubmit)="updateCustomer()" #customerForm="ngForm">
     <div class="form-group">
       <label for="first_name">customer firstname</label>
       <input type="text" class="form-control" id="first_name" [(ngModel)]="new_customer.first_name" name="first_name" required>

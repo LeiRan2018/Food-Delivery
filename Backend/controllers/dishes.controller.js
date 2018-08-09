@@ -17,7 +17,7 @@ exports.getdish = async function (req, res, next) {
     var id = req.params.id;
     try {
         var dish = await dishService.getdish(id);
-        return res.status(200).json({ status: 200, data: dish, count: num, messages: 'Successfully' });
+        return res.status(200).json({ status: 200, data: dish, messages: 'Successfully' });
 
     } catch (e) {
         return res.status(400).json({ status: 400, message: e.message });

@@ -22,7 +22,7 @@ exports.getbill = async function(req, res) {
 
 exports.createbill = async function(req, res) {
     // splite the dish string to a array
-    var disharray = req.body.dishes.split(',');
+    var disharray = req.body.dishes;
 
     // sort dish array to a list show their type and number 
     var dishlist = disharray.reduce((alldata, data) =>{
@@ -68,14 +68,14 @@ exports.updatebill = async function(req, res) {
     }catch(e) {
         return res.status(400).json({status:400, message: e.message});
     }
-    var disharray = req.body.dishes.split(',');
+    var disharray = req.body.dishes;
     // sort array 
     var new_dishlist = disharray.reduce((alldata, data) =>{
         if(data in alldata) {alldata[data]++;}
         else {alldata[data] = 1};
         return alldata;
     },[]);
-    var old_dishlist = old_data.dishes.reduce((alldata, data) =>{
+    var old_dishlist = old_data.dishes.map(data => data._id).reduce((alldata, data) =>{
         if(data in alldata) {alldata[data]++;}
         else {alldata[data] = 1};
         return alldata;

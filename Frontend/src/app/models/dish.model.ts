@@ -4,7 +4,7 @@ export class Dish {
     price: string;
     status: string;
     number: string;
-    genre: string;
+    genre: any;
     created_at: Date;
     modified_at: Date;
     constructor() {

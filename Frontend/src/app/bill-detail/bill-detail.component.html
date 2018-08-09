@@ -1,23 +1,18 @@
-<h1>Bills</h1>
+<div>
+  {{bill.customer.first_name}}, {{bill.customer.last_name}}
+  <button class="delete" title="delete bill" (click)="delete(bill._id)">X</button>
+</div>
+<div>{{bill._id}}</div>
+<div>{{bill.created_at}}</div>
+<div>{{bill.modified_at}}</div>
 <ul>
-  <li *ngFor="let bill of bills">
-    <div>{{bill._id}}</div>
-    <div>
-      <a routerLink="/bills/{{bill._id}}">
-        {{bill.customer.first_name}}
-      </a>
-    </div>
-    <div>{{bill.created_at}}</div>
-    <div>{{bill.modified_at}}</div>
-    <ul>
-      <li *ngFor="let dish of bill.dishes">
-        <div>{{dish.name}}</div>
-      </li>
-    </ul>
+  <li *ngFor="let dish of bill.dishes">
+    <div>{{dish.name}}</div>
   </li>
 </ul>
+<button (click)="goBack()">go back</button>
 
-<form [formGroup]="new_bill" (ngSubmit)="postBill()">
+<form [formGroup]="new_bill" (ngSubmit)="updateBill()">
 
   <div class="form-group">
     <label>customer</label> :

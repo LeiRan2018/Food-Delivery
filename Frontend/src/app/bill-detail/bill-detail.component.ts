@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Bill } from '../models/bill.model';
 import { BillService } from '../services/bill.service';
+import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { Dish } from '../models/dish.model';
 import { DishService } from '../services/dish.service';
 import { Customer } from '../models/customer.model';
@@ -10,39 +12,44 @@ import { Validators } from '@angular/forms';
 import { FormArray } from '@angular/forms';
 
 @Component({
-  selector: 'app-bill',
-  templateUrl: './bill.component.html',
-  styleUrls: ['./bill.component.css']
+  selector: 'app-bill-detail',
+  templateUrl: './bill-detail.component.html',
+  styleUrls: ['./bill-detail.component.css']
 })
-export class BillComponent implements OnInit {
-  bills: Bill[];
+export class BillDetailComponent implements OnInit {
+  bill: Bill;
   dish_list: Dish[];
   customer_list: Customer[];
 
-
   new_bill = this.fb.group({
-    customer: ['', Validators.required],
+    customer: [''],
     dishes: this.fb.array([this.fb.control('')])
   })
-
   constructor(
     private billservice: BillService,
+    private route: ActivatedRoute,
+    private location: Location,
+    private fb: FormBuilder,
     private dishservice: DishService,
-    private customerservice: CustomerService,
-    private fb: FormBuilder
+    private customerservice: CustomerService
   ) { }
 
   ngOnInit() {
-    this.getBills();
+    this.getBill();
   }
 
-  getBills() {
-    this.billservice.getBills()
-      .subscribe(data => this.bills = data);
+  getBill() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.billservice.getBill(id)
+      .subscribe(data => this.bill = data)
     this.dishservice.getDishes()
       .subscribe(data => this.dish_list = data);
     this.customerservice.getcustomers()
       .subscribe(data => this.customer_list = data);
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   get dish() {
@@ -53,15 +60,21 @@ export class BillComponent implements OnInit {
     this.dish.push(this.fb.control(''));
   }
 
-  postBill() {
-    this.billservice.postBill(this.new_bill.value)
-      .subscribe(() => this.getBills());
+  updateBill() {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.billservice.updateBill(id, this.new_bill.value)
+      .subscribe(() => this.getBill());
     this.new_bill = this.fb.group({
-      customer: ['', Validators.required],
+      customer: [''],
       dishes: this.fb.array([
         this.fb.control('')
       ])
     })
+  }
+
+  delete(id) {
+    this.billservice.deleteBill(id)
+      .subscribe(() => this.goBack());
   }
 
 }

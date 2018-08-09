@@ -1,0 +1,11 @@
+<div>
+  {{dish.name}}
+  <button class="delete" title="delete dish" (click)="delete(dish._id)">X</button>
+</div>
+<div>{{dish.price}}</div>
+<div>{{dish.status}}</div>
+<div>{{dish.number}}</div>
+<div>{{dish._id}}</div>
+<div>{{dish.created_at}}</div>
+<div>{{dish.modified_at}}</div>
+<button (click)="goBack()">go back</button>

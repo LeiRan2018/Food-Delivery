@@ -13,7 +13,9 @@ exports.getbills = async function () {
 
 exports.get = async function(id) {
     try {
-        var query = await Bill.findById(id);
+        var query = await Bill.findById(id)
+        .populate('customer')
+        .populate('dishes');
         return query;
     }catch(e) {
         throw Error('error occured while finding bill');

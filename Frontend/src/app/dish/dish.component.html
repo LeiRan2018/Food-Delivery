@@ -1,7 +1,9 @@
 <h1>Menu</h1>
 <ul>
   <li *ngFor="let dish of dishes">
-    <div>{{dish.name}}</div>
+    <div>
+      <a routerLink="/menu/{{dish._id}}">{{dish.name}}</a>
+    </div>
     <div>{{dish._id}}</div>
     <div>{{dish.genre.name}}</div>
     <div>{{dish.price}}</div>
@@ -10,3 +12,29 @@
     <div>{{dish.modified_at}}</div>
   </li>
 </ul>
+
+<div class="container">
+    <h1>dish create Form</h1>
+    <form (ngSubmit)="createdish()" #dishForm="ngForm">
+      <div class="form-group">
+        <label for="name">dish name</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="new_dish.name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="price">dish price</label>
+        <input type="text" class="form-control" id="price" [(ngModel)]="new_dish.price" name="price" required>
+      </div>
+      <div class="form-group">
+        <label for="number">dish number</label>
+        <input type="text" class="form-control" id="number" [(ngModel)]="new_dish.number" name="number" required>
+      </div>
+      <div class="form-group">
+        <label for="genre">dish genre</label>
+        <select class="form-control" id="genre" [(ngModel)]="new_dish.genre" name="genre" required>
+          <option *ngFor="let gen of genres" [value]="gen._id">{{gen.name}}</option>
+        </select>
+      </div>
+  
+      <button class="btn btn-success">Submit</button>
+    </form>
+  </div>

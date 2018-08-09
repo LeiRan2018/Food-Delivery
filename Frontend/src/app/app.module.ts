@@ -13,7 +13,11 @@ import { GenreComponent } from './genre/genre.component';
 
 import { FormsModule }   from '@angular/forms';
 import { GenreDetailComponent } from './genre-detail/genre-detail.component';
+import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
+import { DishDetailComponent } from './dish-detail/dish-detail.component';
+import { BillDetailComponent } from './bill-detail/bill-detail.component';
 
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +26,17 @@ import { GenreDetailComponent } from './genre-detail/genre-detail.component';
     BillComponent,
     HeaderComponent,
     GenreComponent,
-    GenreDetailComponent
+    GenreDetailComponent,
+    CustomerDetailComponent,
+    DishDetailComponent,
+    BillDetailComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
