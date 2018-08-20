@@ -1,17 +1,17 @@
 version: "3"
 services:
   angular:
-    image: jackstones/food-delivery:angular
-    # build: Frontend
+    # image: jackstones/food-delivery:angular
+    build: Frontend
     ports:
       - "4200:4200"
   express:
-    image: jackstones/food-delivery:express
-    # build: Backend
+    # image: jackstones/food-delivery:express
+    build: Backend
     ports:
       - "3000:3000"
-    # links:
-    #   - mongo
+    links:
+      - mongo
   mongo:
     image: mongo
     ports:
