@@ -8,6 +8,7 @@ import { GenreDetailComponent } from './genre-detail/genre-detail.component';
 import { CustomerDetailComponent } from './customer-detail/customer-detail.component';
 import { DishDetailComponent } from './dish-detail/dish-detail.component';
 import { BillDetailComponent } from './bill-detail/bill-detail.component';
+import { CallbackComponent } from './pages/callback/callback.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full'},
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'bills', component: BillComponent},
   { path: 'bills/:id', component: BillDetailComponent},
   { path: 'genres', component: GenreComponent},
-  { path: 'genres/:id', component: GenreDetailComponent}
+  { path: 'genres/:id', component: GenreDetailComponent},
+  { path: 'callback', component: CallbackComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

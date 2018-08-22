@@ -18,6 +18,9 @@ import { DishDetailComponent } from './dish-detail/dish-detail.component';
 import { BillDetailComponent } from './bill-detail/bill-detail.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from './auth/auth.service';
+import { CallbackComponent } from './pages/callback/callback.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     GenreDetailComponent,
     CustomerDetailComponent,
     DishDetailComponent,
-    BillDetailComponent
+    BillDetailComponent,
+    CallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +42,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
