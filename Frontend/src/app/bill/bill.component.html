@@ -1,32 +1,61 @@
 <h1>Bills</h1>
-<ul>
-  <li *ngFor="let bill of bills">
-    <div>{{bill._id}}</div>
-    <div>
-      <a routerLink="/bills/{{bill._id}}">
-        {{bill.customer.first_name}}
-      </a>
-    </div>
-    <div>{{bill.created_at}}</div>
-    <div>{{bill.modified_at}}</div>
-    <ul>
-      <li *ngFor="let dish of bill.dishes">
-        <div>{{dish.name}}</div>
+<!-- <p>created: {{created}} </p> -->
+
+<ul class="list-group">
+  <li class="list-group-item list-group-item-primary" *ngFor="let bill of bills">
+    <p>userId: {{bill.userId}}</p>
+    <ul class="list-group">
+      <p>order list: </p>
+      <li class="list-group-item list-group-item-danger" *ngFor="let dish of bill.dishes">
+        <p>{{dish.name}}</p>
       </li>
     </ul>
   </li>
 </ul>
-
-<form [formGroup]="new_bill" (ngSubmit)="postBill()">
-
-  <div class="form-group">
-    <label>customer</label> :
-    <select class="form-control" formControlName="customer">
-      <option *ngFor="let customer of customer_list" [value]="customer._id">{{customer.first_name}}</option>
-    </select>
+<!-- <h2>{{new_bill}}</h2> -->
+<!-- <div *ngIf=created>
+  <div>bill_id: {{bill._id}}
+    <button class="delete" title="delete bill" (click)="delete(bill._id)">X</button>
   </div>
+  <div>created_at: {{bill.created_at}}</div>
+  <div>modified_at: {{bill.modified_at}}</div>
+  <div>userId: {{bill.userId}}</div>
+  <ul>
+    <li *ngFor="let dish of bill.dishes">
+      <div>{{dish.name}}</div>
+    </li>
+  </ul>
+  <button (click)="goBack()">go back</button>
+  <button (click)="edit()">Edit</button>
+</div> -->
+
+<!-- <form [formGroup]="new_bill" (ngSubmit)="postBill()">
   <div formArrayName="dishes">
-    <h3>Dishes</h3>
+    <div *ngFor="let dish of new_bill.controls.dishes.controls; let i = index">
+      <div [formGroupName]="i">
+        <ul>
+          <li>
+            <label>id</label>
+            <input type="text" formControlName="id">
+          </li>
+          <li>
+            <label>name</label>
+            <input type="text" formControlName="name">
+          </li>
+          <li>
+            <label>number</label>
+            <input type="number" formControlName="number">
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-success">Submit</button>
+</form> -->
+
+<!-- <form *ngIf=edited [formGroup]="new_bill" (ngSubmit)="updateBill()">
+  <div formArrayName="dishes">
+    <h3>Update bill</h3>
     <button type="button" (click)="addDishes()">Add Dish</button>
     <div *ngFor="let www of dish.controls; let i=index">
       <label>
@@ -38,8 +67,8 @@
     </div>
   </div>
   <button type="submit" class="btn btn-success">Submit</button>
-</form>
+</form> -->
 
-<p>
-  Form status: {{new_bill.status}} Form value: {{new_bill.value | json}}
-</p>
+<!-- <p>
+  Form status: Form value: {{new_bill.value | json}}
+</p> -->

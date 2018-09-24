@@ -1,19 +1,96 @@
-<h1>Menu</h1>
-<ul>
-  <li *ngFor="let dish of dishes">
-    <div>
-      <a routerLink="/menu/{{dish._id}}">{{dish.name}}</a>
-    </div>
-    <div>{{dish._id}}</div>
-    <div>{{dish.genre.name}}</div>
-    <div>{{dish.price}}</div>
-    <div>{{dish.number}}</div>
-    <div>{{dish.created_at}}</div>
-    <div>{{dish.modified_at}}</div>
-  </li>
-</ul>
-
 <div class="container">
+  <div class="py-5 text-center">
+    <h2>Menu</h2>
+    <!-- <p>{{text}}</p>
+    <form [formGroup]="test_form" (ngSubmit)="postBill()">
+      <div formArrayName="dishes">
+        <div *ngFor="let dish of test_form.controls.dishes.controls; let i = index;">
+          <ul class="list-group">
+            <li class="list-group-item list-group-item-success">
+              <div>{{dishes[i].name}}</div>
+              <div>{{dishes[i].price}}</div>
+              <div>{{dishes[i].number}}</div>
+              <div [formGroupName]="i">
+                <div class="row justify-content-md-center no-gutters">
+                  <div class="col-xs">
+                    <button type="button" class="btn btn-success " (click)="newadddish(i);">+</button>
+                  </div>
+                  <div class="col-1">
+                    <input type="number" class="form-control" formControlName="new" min="0">
+                  </div>
+                  <div class="col-xs">
+                    <button type="button" class="btn btn-danger form-control" (click)="newdeletedish();">-</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+    <p>{{test_form.value | json}} </p>
+    <ul>
+      <li *ngFor="let dish of test_form.value.dishes">
+        <div>dish name: {{dish.name}} </div>
+        <div>price: {{dish.price}} </div>
+        <div>order number: {{dish.new}} </div>
+      </li>
+    </ul> -->
+
+    <button type="button" class="btn btn-info" *ngIf="auth.loggedIn && auth.isAdmin" (click)="newdish()">{{newdish_text}}</button>
+  </div>
+  <div class="row">
+    <div class="col-md-4 order-md-2 mb-4">
+      <div *ngIf=created>
+        <div>Your Order</div>
+        <div>Name: {{auth.userProfile.name}}</div>
+        <div>created_at: {{bill.created_at}}</div>
+        <ul>
+          <li *ngFor="let dish of orderlist">
+            <p>number of {{dish[1][0].name}}: {{dish[1].length}} </p>
+          </li>
+        </ul>
+        <button class="delete" title="delete bill" (click)="deletebill(bill._id)">Cancel</button>
+      </div>
+      <div *ngIf="!created && auth.loggedIn && auth.userProfile">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-success" *ngFor="let dish of menulist">
+            <p>number of {{dish[1][0].name}}: {{dish[1].length}} </p>
+            <p>subtotoal for {{dish[1][0].name}}: {{dish[1].length}} * {{dish[1][0].price}}</p>
+          </li>
+        </ul>
+        <p>Total(CAD): ${{totalcost}}</p>
+        <button type="submit" class="btn btn-info" (click)="createbill()">Submit</button>
+      </div>
+    </div>
+    <div class="col-md-8 order-md-1">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-danger" *ngFor="let dish of dishes">
+          <div>
+            <a routerLink="/menu/{{dish._id}}">
+              <h2>
+                {{dish.name}}
+              </h2>
+            </a>
+            <div class="row no-gutters">
+              <div class="col-xs">
+                <button type="button" class="btn btn-success form-control" (click)="adddish(dish);">+</button>
+              </div>
+              <div class="col-xs">
+                <button type="button" class="btn btn-danger form-control" (click)="deletedish(dish);">-</button>
+              </div>
+            </div>
+          </div>
+          <div>type: {{dish.genre.name}}</div>
+          <div>price: {{dish.price}}</div>
+          <div>number: {{dish.number}}</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container" *ngIf="newdish_token">
     <h1>dish create Form</h1>
     <form (ngSubmit)="createdish()" #dishForm="ngForm">
       <div class="form-group">
@@ -34,7 +111,8 @@
           <option *ngFor="let gen of genres" [value]="gen._id">{{gen.name}}</option>
         </select>
       </div>
-  
       <button class="btn btn-success">Submit</button>
     </form>
   </div>
+
+</div>

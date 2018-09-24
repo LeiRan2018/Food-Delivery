@@ -27,7 +27,7 @@ export class BillService {
     );
   }
 
-  getBill(id: string): Observable<Bill> {
+  getBill$(id: string): Observable<Bill> {
     return this.http.get(`${this.api}/${id}`).pipe(
       map(res => {return res['data'] as Bill})
     );
@@ -46,7 +46,7 @@ export class BillService {
   }
 
   deleteBill(id) {
-    return this.http.delete(`$${this.api}/${id}`, {
+    return this.http.delete(`${this.api}/${id}`, {
       headers: new HttpHeaders().set('Authorization', this._authHeader)
     });
   }

@@ -12,12 +12,12 @@
         </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/bills">Bills
+        <a *ngIf="auth.loggedIn && auth.isAdmin" class="nav-link" routerLink="/bills">Bill
           <span class="sr-only">(current)</span>
         </a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/customers">Customers
+        <a *ngIf="auth.loggedIn && auth.isAdmin" class="nav-link" routerLink="/customers">Customers
           <span class="sr-only">(current)</span>
         </a>
       </li>
@@ -26,24 +26,14 @@
           <span class="sr-only">(current)</span>
         </a>
       </li>
-      <li class="nav-item active dropdown">
-        <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">Categories</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" routerLink="/Italian">Italian</a>
-          <a class="dropdown-item" routerLink="/Mexican">Mexican</a>
-          <a class="dropdown-item" routerLink="/Chinese">Chinese</a>
-          <a class="dropdown-item" routerLink="/Japanese">Japanese</a>
-        </div>
-      </li>
       <li class="nav-item active ">
         <span *ngIf="auth.loggingIn">Logging in...</span>
         <ng-template [ngIf]="!auth.loggingIn">
-          <a *ngIf="!auth.loggedIn" (click)="auth.login()">Log In</a>
-          <span *ngIf="auth.loggedIn && auth.userProfile">
+          <button class="btn btn-outline-success my-2 my-sm-0" *ngIf="!auth.loggedIn" (click)="auth.login()">Log In</button>
+          <span class="text-white" *ngIf="auth.loggedIn && auth.userProfile">
             {{ auth.userProfile.name }}
             <span class="sr-only">|</span>
-            <a (click)="auth.logout()">Log Out</a>
+            <button class="btn btn-outline-success my-2 my-sm-0" (click)="auth.logout()">Log Out</button>
           </span>
         </ng-template>
       </li>

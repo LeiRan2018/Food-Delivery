@@ -23,6 +23,7 @@ exports.getbill = async function(req, res) {
 exports.createbill = async function(req, res) {
     // splite the dish string to a array
     var disharray = req.body.dishes;
+    // var dishlist = req.body.dishes;
 
     // sort dish array to a list show their type and number 
     var dishlist = disharray.reduce((alldata, data) =>{
@@ -44,7 +45,8 @@ exports.createbill = async function(req, res) {
         for(i=0; i<dishstatus[dish]; i++) { dish_available.push(dish)}
     }
     var new_data = {
-        customer: req.body.customer ? req.body.customer: null,
+        // customer: req.body.customer ? req.body.customer: null,
+        userId: req.body.userId ? req.body.userId: false,
         created_at: Date.now(),
         dishes: (dish_available.length >0) ? dish_available: false
     }
@@ -99,7 +101,7 @@ exports.updatebill = async function(req, res) {
     }
 
     var new_data = {
-        customer: req.body.customer ? req.body.customer: old_data.customer,
+        // customer: req.body.customer ? req.body.customer: old_data.customer,
         dishes: (dish_available.length >0) ? dish_available: false,
         modified_at: Date.now()
     }
@@ -119,6 +121,21 @@ exports.updatebill = async function(req, res) {
 
 exports.deletebill = async function(req, res) {
     var id = req.params.id;
+    try {
+        var old_data = await billService.getbyId(id);
+    }catch(e) {
+        return res.status(400).json({status:400, message: e.message});
+    }
+    var old_dishlist = old_data.dishes.map(data => data._id).reduce((alldata, data) =>{
+        if(data in alldata) {alldata[data]++;}
+        else {alldata[data] = 1};
+        return alldata;
+    },[]);
+    try {
+        await dishService.update_back_pool(old_dishlist);
+    }catch(e) {
+        return res.status(400).json({status:400, message: e.message});
+    }
     try {
         await billService.delete(id);
         var query = await billService.getbills();

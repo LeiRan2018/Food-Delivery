@@ -1,0 +1,35 @@
+<!-- <div>
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div *ngFor="let billform of billforms" class="form-row">
+      <app-form-bill [billform]="billform" [form]="form"></app-form-bill>
+    </div>
+
+    <div class="form-row">
+      <button [disabled]="!form.valid">Save</button>
+    </div>
+  </form>
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+</div>
+
+<div>
+  <form [formGroup]="dishFormGroup">
+    <div *ngFor="let dish of dish_list" class="form-row">
+      <app-form-bill [dish]="dish" [dishFormGroup]="dishFormGroup"></app-form-bill>
+    </div>
+  </form>
+</div> -->
+<h2>Dish_list: {{dish_list}}</h2>
+<h2>dishFormGroup: {{group}}</h2>
+
+<!-- <h2>test status: {{test}}</h2>
+<h2>size: {{size}}</h2> -->
+<ul>
+  <li *ngFor="let dish of dish_list">
+    <label>
+      {{dish.name}}
+      <!-- <input type="number" [formControlName]="dish._id"> -->
+    </label>
+  </li>
+</ul>

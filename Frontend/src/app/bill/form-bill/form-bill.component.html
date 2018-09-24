@@ -1,0 +1,18 @@
+<div [formGroup]="form">
+  <label [attr.for]="billform._id">{{billform.label}}</label>
+
+  <div [ngSwitch]="billform.controlType">
+
+    <input *ngSwitchCase="'select'" [formControlName]="billform._id" [id]="billform._id" [type]="billform.type">
+
+  </div>
+
+  <div class="errorMessage" *ngIf="!isValid">{{billform.label}} is required</div>
+</div>
+
+<div [formGroup]="dishFormGroup">
+  <label >{{dish.name}}</label>
+
+  <input [formControlName]="dish._id" [id]="dish._id">
+
+</div>

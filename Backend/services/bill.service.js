@@ -13,6 +13,17 @@ exports.getbills = async function () {
 
 exports.get = async function(id) {
     try {
+        var query = await Bill.findOne({userId: id})
+        .populate('customer')
+        .populate('dishes');
+        return query;
+    }catch(e) {
+        throw Error('error occured while finding bill');
+    }
+};
+
+exports.getbyId = async function(id) {
+    try {
         var query = await Bill.findById(id)
         .populate('customer')
         .populate('dishes');
@@ -34,7 +45,7 @@ exports.create = async function(data) {
 
 exports.update = async function(id, data) {
     try {
-        await Bill.findByIdAndUpdate(id, data);
+        await Bill.findOneAndUpdate({userId: id}, data);
     }catch(e) {
         throw Error('error occured while updating bill');
     }

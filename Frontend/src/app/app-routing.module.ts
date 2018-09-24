@@ -9,6 +9,7 @@ import { CustomerDetailComponent } from './customer-detail/customer-detail.compo
 import { DishDetailComponent } from './dish-detail/dish-detail.component';
 import { BillDetailComponent } from './bill-detail/bill-detail.component';
 import { CallbackComponent } from './pages/callback/callback.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/menu', pathMatch: 'full'},
@@ -16,14 +17,17 @@ const routes: Routes = [
   { path: 'menu/:id', component: DishDetailComponent},
   { path: 'customers', component: CustomerComponent},
   { path: 'customers/:id', component: CustomerDetailComponent},
-  { path: 'bills', component: BillComponent},
-  { path: 'bills/:id', component: BillDetailComponent},
+  { path: 'bills', component: BillComponent, canActivate: [AuthGuard]},
+  // { path: 'bills/:id', component: BillDetailComponent}, 
   { path: 'genres', component: GenreComponent},
   { path: 'genres/:id', component: GenreDetailComponent},
   { path: 'callback', component: CallbackComponent}
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+  providers: [
+    AuthGuard
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -40,7 +40,7 @@ export class BillDetailComponent implements OnInit {
 
   getBill() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.billservice.getBill(id)
+    this.billservice.getBill$(id)
       .subscribe(data => this.bill = data)
     this.dishservice.getDishes()
       .subscribe(data => this.dish_list = data);

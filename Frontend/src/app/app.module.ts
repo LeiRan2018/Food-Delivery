@@ -20,6 +20,11 @@ import { BillDetailComponent } from './bill-detail/bill-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './auth/auth.service';
 import { CallbackComponent } from './pages/callback/callback.component';
+import { FormComponent } from './bill/form/form.component';
+import { FormBillComponent } from './bill/form-bill/form-bill.component';
+import { LoadingComponent } from './core/loading.component';
+import { AuthModule } from './auth/auth.module';
+
 
 @NgModule({
   declarations: [
@@ -33,16 +38,20 @@ import { CallbackComponent } from './pages/callback/callback.component';
     CustomerDetailComponent,
     DishDetailComponent,
     BillDetailComponent,
-    CallbackComponent
+    CallbackComponent,
+    FormComponent,
+    FormBillComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot()
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

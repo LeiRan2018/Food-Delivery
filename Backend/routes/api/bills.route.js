@@ -7,8 +7,8 @@ var adminCheck = require('../../auth/adminCheck');
 
 router.get('/', billController.getbills);
 router.get('/:id', billController.getbill);
-router.post('/create', jwtCheck, adminCheck, billController.createbill);
+router.post('/create', billController.createbill);
 router.put('/:id/update', jwtCheck, adminCheck, billController.updatebill);
-router.delete('/:id', jwtCheck, adminCheck, billController.deletebill);
+router.delete('/:id', jwtCheck, billController.deletebill);
 
 module.exports = router;
